@@ -1,0 +1,47 @@
+version: '3'
+services:
+  codeigniter_docker:
+    depends_on: 
+      - db
+    container_name: codeigniter_docker
+    build: .
+    volumes:
+      - "./portfolioV2:/var/www/html/"
+    ports:
+      - 8080:80
+    networks:
+      - portfolio_networks
+
+  db:
+    image: mysql:latest
+    container_name: mysql_db
+    environment:
+      MYSQL_DATABASE: portfolio_db
+      MYSQL_USER: portfolio_user
+      MYSQL_PASSWORD: sae_user
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+      # - "./portfolioV2:/docker-entrypoint-initdb.d"
+      # - "./portfolioV2:/var/www/html"
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - portfolio_networks
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    environment:
+       PMA_HOST: db
+       PMA_ARBITARY: 1
+    ports:
+      - 8001:80
+    networks:
+      - portfolio_networks
+networks:
+  portfolio_networks:
+    driver: bridge
+volumes:
+  mysql_data:

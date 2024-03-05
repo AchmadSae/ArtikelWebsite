@@ -1,0 +1,19 @@
+# Gunakan image yang mengandung npm
+FROM node:latest
+
+# Setel direktori kerja Anda
+WORKDIR /var/www/html
+
+# Install dependensi yang diperlukan untuk npm
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libzip-dev
+
+# Bersihkan cache apt
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Tampilkan versi npm
+RUN npm -v
