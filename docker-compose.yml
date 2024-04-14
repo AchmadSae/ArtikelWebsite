@@ -6,7 +6,7 @@ services:
     container_name: codeigniter_docker
     build: .
     volumes:
-      - "./portfolioV2:/var/www/html/"
+      - "./artikel:/var/www/html/"
     ports:
       - 8080:80
     networks:

@@ -1,0 +1,56 @@
+@import '_var';
+.footer {
+    background: $color1;
+    padding: 30px 0px;
+    text-align: center;
+  
+    .row {
+      width: 100%;
+      margin: 1% 0%;
+      padding: 0.6% 0%;
+      color: $color4;
+      font-size: 0.8em;
+      display: inline-block;
+      a {
+        text-decoration: none;
+        color: gray;
+        transition: 0.5s;
+        
+        &:hover {
+          color: #fff;
+        }
+      }
+  
+      ul {
+        width: 100%;
+      }
+  
+      ul li {
+        display: inline-block;
+        margin: 0px 30px;
+      }
+  
+      a i {
+        font-size: 2em;
+        margin: 0% 1%;
+      }
+    }
+  
+    @media (max-width: 720px) {
+      text-align: left;
+      padding: 5%;
+  
+      .row {
+        ul li {
+          display: block;
+          margin: 10px 0px;
+          text-align: left;
+        }
+  
+        a i {
+          margin: 0% 3%;
+        }
+      }
+    }
+  }
+  

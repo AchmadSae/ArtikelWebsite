@@ -20,7 +20,7 @@ RUN a2enmod rewrite
 RUN service apache2 restart
 
 # Setel direktori kerja Anda
-WORKDIR /var/www/html
+WORKDIR /var/www/html/
 
 # Salin konfigurasi Apache
 COPY apache2.conf /etc/apache2/apache2.conf

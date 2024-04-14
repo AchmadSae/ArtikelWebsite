@@ -1,0 +1,35 @@
+{
+  "devDependencies": {
+    "autoprefixer": "^10.4.18",
+    "nodemon": "^3.1.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
+  },
+  "name": "portfoliov2",
+  "description": "## What is CodeIgniter?",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "browserslist": "^4.23.0",
+    "caniuse-lite": "^1.0.30001593",
+    "electron-to-chromium": "^1.4.692",
+    "escalade": "^3.1.2",
+    "fraction.js": "^4.3.7",
+    "nanoid": "^3.3.7",
+    "node-releases": "^2.0.14",
+    "normalize-range": "^0.1.2",
+    "picocolors": "^1.0.0",
+    "postcss-value-parser": "^4.2.0",
+    "source-map-js": "^1.0.2",
+    "update-browserslist-db": "^1.0.13"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

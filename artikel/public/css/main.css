@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "font-aksen";
+  src: url("../font/IndieFlower-Regular.ttf");
+}
+@font-face {
+  font-family: "font-subheading";
+  src: url("../font/Comfortaa-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "font-heading";
+  src: url("../font/Montserrat-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "font-utama";
+  src: url("../font/OpenSans-VariableFont_wdth,wght.ttf");
+}
+@font-face {
+  font-family: "font-first";
+  src: url("../font/Monoton-Regular.ttf");
+}
+body {
+  margin-top: 2em;
+  height: 250vh;
+  font-family: "font-utama";
+  font-size: 14px;
+}/*# sourceMappingURL=main.css.map */

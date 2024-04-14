@@ -1,0 +1,42 @@
+// font configuration 
+@font-face {
+    font-family: 'font-aksen';
+    src: url('../font/IndieFlower-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'font-subheading';
+  src: url('../font/Comfortaa-VariableFont_wght.ttf');
+}
+@font-face {
+  font-family: 'font-heading';
+  src: url('../font/Montserrat-VariableFont_wght.ttf');
+}
+@font-face {
+  font-family: 'font-utama';
+  src: url('../font/OpenSans-VariableFont_wdth,wght.ttf');
+}
+@font-face {
+  font-family: 'font-first';
+  src: url('../font/Monoton-Regular.ttf');
+  // src: url('../font/RubikDoodleShadow-Regular.ttf');
+}
+
+// font configuration 
+// color theme 
+$color1:#31363F;
+$color2:#B4B4B8;
+$color3:#76ABAE;
+$color4: #f9f9f9;
+$color-warning: #FFC470;
+
+@mixin text-paragraf($text-align,$style, $color){
+  font-size: 15px; // Ukuran font paragraf
+  line-height: 1.8; // Jarak antar baris
+  padding: 5px; // Padding untuk ruang di sekitar paragraf
+  text-align: $text-align;
+  // font-family: 'font-utama';
+  font-style: $style;
+  color: $color;
+}
+

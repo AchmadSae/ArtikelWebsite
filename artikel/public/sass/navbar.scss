@@ -1,0 +1,58 @@
+@import '_var';
+
+   /* Media query untuk ukuran layar besar */
+   @media (min-width: 950px) {
+    #navbar{
+        background-color: white;
+        #navbarSupportedContent{
+            .text-nav {
+                border-left: 4px solid $color3;
+                margin-left: 2em;
+                transition: background-color 0.3s ease-out; // Transition for background color
+                &:hover {
+                    background-color:$color3; // Change background color on hover
+                }
+                a{
+                    color: $color1;
+                    font-family: 'font-utama';
+                    font-weight: 600;
+                    &:hover{
+                        color: white;
+                    }
+                }
+            }
+        }
+            
+     }
+}
+
+   /* Media query untuk ukuran layar kecil*/
+   @media (max-width: 950px) {
+    #navbar{
+        background-color: $color1;
+        #navbarSupportedContent{
+            .text-nav {
+                // border-left: 4px solid $color3;
+                // margin-left: 2em;
+                transition: background-color 0.3s ease-out; // Transition for background color
+                &:hover {
+                        border-bottom: 4px solid $color3;
+                }
+                a{
+                    color: white;
+                    font-family: 'font-utama';
+                    font-weight: 600;
+                    &:hover{
+                        color: $color3;
+                    }
+                }
+            }
+            form{
+                button {
+                    color: white;
+                }
+            }
+        }
+            
+     }
+}

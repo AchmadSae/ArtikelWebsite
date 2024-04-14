@@ -1,0 +1,65 @@
+@font-face {
+  font-family: "font-aksen";
+  src: url("../font/IndieFlower-Regular.ttf");
+}
+@font-face {
+  font-family: "font-subheading";
+  src: url("../font/Comfortaa-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "font-heading";
+  src: url("../font/Montserrat-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "font-utama";
+  src: url("../font/OpenSans-VariableFont_wdth,wght.ttf");
+}
+@font-face {
+  font-family: "font-first";
+  src: url("../font/Monoton-Regular.ttf");
+}
+/* Media query untuk ukuran layar besar */
+@media (min-width: 950px) {
+  #navbar {
+    background-color: white;
+  }
+  #navbar #navbarSupportedContent .text-nav {
+    border-left: 4px solid #76ABAE;
+    margin-left: 2em;
+    transition: background-color 0.3s ease-out;
+  }
+  #navbar #navbarSupportedContent .text-nav:hover {
+    background-color: #76ABAE;
+  }
+  #navbar #navbarSupportedContent .text-nav a {
+    color: #31363F;
+    font-family: "font-utama";
+    font-weight: 600;
+  }
+  #navbar #navbarSupportedContent .text-nav a:hover {
+    color: white;
+  }
+}
+/* Media query untuk ukuran layar kecil*/
+@media (max-width: 950px) {
+  #navbar {
+    background-color: #31363F;
+  }
+  #navbar #navbarSupportedContent .text-nav {
+    transition: background-color 0.3s ease-out;
+  }
+  #navbar #navbarSupportedContent .text-nav:hover {
+    border-bottom: 4px solid #76ABAE;
+  }
+  #navbar #navbarSupportedContent .text-nav a {
+    color: white;
+    font-family: "font-utama";
+    font-weight: 600;
+  }
+  #navbar #navbarSupportedContent .text-nav a:hover {
+    color: #76ABAE;
+  }
+  #navbar #navbarSupportedContent form button {
+    color: white;
+  }
+}/*# sourceMappingURL=navbar.css.map */
