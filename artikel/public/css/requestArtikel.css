@@ -1,0 +1,61 @@
+@font-face {
+  font-family: "font-aksen";
+  src: url("../font/IndieFlower-Regular.ttf");
+}
+@font-face {
+  font-family: "font-subheading";
+  src: url("../font/Comfortaa-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "font-heading";
+  src: url("../font/Montserrat-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "font-utama";
+  src: url("../font/OpenSans-VariableFont_wdth,wght.ttf");
+}
+@font-face {
+  font-family: "font-first";
+  src: url("../font/Monoton-Regular.ttf");
+}
+#title {
+  padding: 3em 10em 0.5em 10em;
+  text-align: center;
+  justify-content: center;
+}
+#title img {
+  height: 150px;
+  width: 150px;
+}
+#title .text {
+  font-size: 15px;
+  line-height: 1.8;
+  padding: 5px;
+  text-align: center;
+  font-style: normal;
+  color: #31363F;
+}
+
+@media (max-width: 700px) {
+  #title {
+    padding: 3em 1em 0.5em 1em;
+  }
+}
+#formRequest .textContent {
+  border-top: 10px solid #76ABAE;
+}
+#formRequest .imgs {
+  border-bottom: 10px solid #76ABAE;
+  padding-bottom: 2em;
+}
+#formRequest .btn-container button {
+  background-color: #76ABAE;
+  color: white;
+  font-family: font-heading;
+  font-weight: 500;
+}
+#formRequest .btn-container button:hover {
+  background-color: #FFC470;
+  border: 2px solid #76ABAE;
+  color: #76ABAE;
+}/*# sourceMappingURL=requestArtikel.css.map */

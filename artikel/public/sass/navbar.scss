@@ -21,6 +21,22 @@
                     }
                 }
             }
+            .form-search{
+                input {
+                    color: $color1; // Change text color
+                    border-color: $color3; // Change border color
+                    height: 40px; // Adjust input height
+                    padding: 10px; // Adjust input padding
+                    border-radius: 5px; // Round input corners
+                    :focus{
+                        border-color: $color3;
+                        box-shadow: 0 0 0 0.2rem  $color3;
+                    }
+                }
+                .btn {
+                    @include btn-style(font-subheading);
+                }
+            }
         }
             
      }
@@ -30,6 +46,7 @@
    @media (max-width: 950px) {
     #navbar{
         background-color: $color1;
+        
         #navbarSupportedContent{
             .text-nav {
                 // border-left: 4px solid $color3;
@@ -47,9 +64,15 @@
                     }
                 }
             }
-            form{
-                button {
-                    color: white;
+            .form-search{
+                input {
+                    :focus{
+                        border-color: $color3;
+                        box-shadow: 0 0 0 0.2rem rgba(210, 24, 114, 0.705);
+                    }
+                }
+                .btn {
+                    @include btn-style(font-subheading);
                 }
             }
         }

@@ -1,0 +1,101 @@
+@font-face {
+  font-family: "font-aksen";
+  src: url("../font/IndieFlower-Regular.ttf");
+}
+@font-face {
+  font-family: "font-subheading";
+  src: url("../font/Comfortaa-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "font-heading";
+  src: url("../font/Montserrat-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "font-utama";
+  src: url("../font/OpenSans-VariableFont_wdth,wght.ttf");
+}
+@font-face {
+  font-family: "font-first";
+  src: url("../font/Monoton-Regular.ttf");
+}
+#login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#login-container #login {
+  max-width: 400px;
+  border: 2px solid rgba(111, 109, 109, 0.3137254902);
+  border-radius: 10px;
+  padding: 1em 3em 1em 3em;
+  margin: 0 1em 0 1em;
+  font-family: "font-subheading";
+}
+#login-container #login h1 {
+  text-align: center;
+  color: #76ABAE;
+  font-family: "font-heading";
+}
+#login-container #login form .btn {
+  background-color: #76ABAE;
+  color: white;
+  font-family: font-utama;
+  font-weight: 500;
+  display: block;
+  margin: 0 auto;
+}
+#login-container #login form .btn:hover {
+  background-color: #FFC470;
+  border: 2px solid #76ABAE;
+  color: #76ABAE;
+}
+#login-container #login a {
+  text-decoration: none;
+  font-size: 12px;
+  color: #31363F;
+}
+#login-container #login a:hover {
+  color: #76ABAE;
+}
+
+#signUp-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#signUp-container #signUp {
+  max-width: 400px;
+  border: 2px solid rgba(111, 109, 109, 0.3137254902);
+  border-radius: 10px;
+  padding: 1em 3em 1em 3em;
+  margin: 0 1em 0 1em;
+  font-family: "font-subheading";
+}
+#signUp-container #signUp h1 {
+  text-align: center;
+  color: #76ABAE;
+  font-family: "font-heading";
+}
+#signUp-container #signUp form .btn {
+  background-color: #76ABAE;
+  color: white;
+  font-family: font-utama;
+  font-weight: 500;
+  display: block;
+  margin: 0 auto;
+}
+#signUp-container #signUp form .btn:hover {
+  background-color: #FFC470;
+  border: 2px solid #76ABAE;
+  color: #76ABAE;
+}
+#signUp-container #signUp a {
+  text-decoration: none;
+  font-size: 12px;
+  color: #31363F;
+}
+#signUp-container #signUp a:hover {
+  color: #76ABAE;
+}/*# sourceMappingURL=auth.css.map */

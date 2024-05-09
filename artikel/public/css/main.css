@@ -19,8 +19,8 @@
   src: url("../font/Monoton-Regular.ttf");
 }
 body {
+  min-height: 100vh;
   margin-top: 2em;
-  height: 250vh;
   font-family: "font-utama";
   font-size: 14px;
 }/*# sourceMappingURL=main.css.map */

@@ -3,8 +3,6 @@
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
-use CodeIgniter\Database\MySQLi\Forge;
-
 class Users extends Migration
 {
     public function up()
@@ -13,12 +11,23 @@ class Users extends Migration
 
         //create table
         $fields = [
-            'email' => [
+            'id' => [
+                'type'           => 'INT',
+                'constraint'     => 5,
+                'unsigned'       => true,
+                'auto_increment' => true,
+            ],
+            'username' => [
                 'type' => 'VARCHAR',
                 'constraint' => 20,
                 'unique' => true,
             ],
-            'name' => [
+            'password' => [
+                'type' => 'VARCHAR',
+                'constraint' => 20,
+                'unique' => true,
+            ],
+            'instagram_name' => [
                 'type' => 'VARCHAR',
                 'constraint' => 20,
                 'unique' => true,
@@ -27,35 +36,32 @@ class Users extends Migration
                 'type' => 'TINYINT',
                 'constraint' => 1,
                 'default' => 1,
+                'null' => true
             ],
             'isAdmin' => [
                 'type' => 'TINYINT',
                 'constraint' => 1,
                 'default' => 0,
             ],
-            'created_at' => [
-                'type' => 'DATETIME',
-                'null' => true,
-            ],
-            'updated_at' => [
-                'type' => 'DATETIME',
-                'null' => true,
-            ],
+            'created_at' =>'time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+            'updated_at' => 'time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
         ];
         $this->forge->addField($fields);
-        $this->forge->addKey('email', true);
+        $this->forge->addKey('id', true);
         $this->forge->createTable('users', true);
 
 
         $data = array(
             array(
-                'email' => 'saeGuest@gmail.com',
-                'name' => 'saeGuest',
+                'username' => 'KaSae',
+                'password' => 'saeGuest',
+                'instagram_name' => '@ka_sae_',
                 'isAdmin' => 0,
             ),
             array(
-                'email' => 'saeAdmin@gmail.com',
-                'name' => 'saeAdmin',
+                'username' => 'NiaSan',
+                'password' => 'sanAdmin',
+                'instagram_name' => '@ka_nia_',
                 'isAdmin' => 1,
             )
         );

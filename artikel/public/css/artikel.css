@@ -42,7 +42,7 @@
   color: #31363F;
 }
 #main .hot-text::first-letter {
-  font-size: 4em;
+  font-size: 2em;
   font-family: "font-first";
   float: left;
   text-align: justify;

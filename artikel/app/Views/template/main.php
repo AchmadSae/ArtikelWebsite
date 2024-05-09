@@ -4,16 +4,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title> <?php echo $titleWeb; ?> </title>
     <link rel="stylesheet" href=" <?= base_url('css/bootstrap.min.css'); ?> ">
     <!-- style our css  -->
     <link rel="stylesheet" href="<?= base_url('/css/artikel.css'); ?> ">
     <link rel="stylesheet" href="<?= base_url('/css/navbar.css'); ?> ">
     <link rel="stylesheet" href="<?= base_url('/css/main.css'); ?> ">
     <link rel="stylesheet" href="<?= base_url('/css/footer.css'); ?> ">
+    <link rel="stylesheet" href="<?= base_url('/css/requestArtikel.css'); ?> ">
+    <link rel="stylesheet" href="<?= base_url('/css/auth.css'); ?> ">
+
+
     <link rel="stylesheet" href="<?= base_url('/assets/fontawesome.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('/assets/brands.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('/assets/solid.css'); ?>">
+
 
 
 </head>

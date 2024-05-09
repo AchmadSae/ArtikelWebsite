@@ -39,6 +39,28 @@
   #navbar #navbarSupportedContent .text-nav a:hover {
     color: white;
   }
+  #navbar #navbarSupportedContent .form-search input {
+    color: #31363F;
+    border-color: #76ABAE;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  #navbar #navbarSupportedContent .form-search input :focus {
+    border-color: #76ABAE;
+    box-shadow: 0 0 0 0.2rem #76ABAE;
+  }
+  #navbar #navbarSupportedContent .form-search .btn {
+    background-color: #76ABAE;
+    color: white;
+    font-family: font-subheading;
+    font-weight: 500;
+  }
+  #navbar #navbarSupportedContent .form-search .btn:hover {
+    background-color: #FFC470;
+    border: 2px solid #76ABAE;
+    color: #76ABAE;
+  }
 }
 /* Media query untuk ukuran layar kecil*/
 @media (max-width: 950px) {
@@ -59,7 +81,19 @@
   #navbar #navbarSupportedContent .text-nav a:hover {
     color: #76ABAE;
   }
-  #navbar #navbarSupportedContent form button {
+  #navbar #navbarSupportedContent .form-search input :focus {
+    border-color: #76ABAE;
+    box-shadow: 0 0 0 0.2rem rgba(210, 24, 114, 0.705);
+  }
+  #navbar #navbarSupportedContent .form-search .btn {
+    background-color: #76ABAE;
     color: white;
+    font-family: font-subheading;
+    font-weight: 500;
+  }
+  #navbar #navbarSupportedContent .form-search .btn:hover {
+    background-color: #FFC470;
+    border: 2px solid #76ABAE;
+    color: #76ABAE;
   }
 }/*# sourceMappingURL=navbar.css.map */
