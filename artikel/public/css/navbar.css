@@ -23,6 +23,11 @@
   #navbar {
     background-color: white;
   }
+  #navbar .navbar-brand img {
+    padding-left: 5px;
+    width: 60px;
+    height: 60px;
+  }
   #navbar #navbarSupportedContent .text-nav {
     border-left: 4px solid #76ABAE;
     margin-left: 2em;
@@ -66,6 +71,10 @@
 @media (max-width: 950px) {
   #navbar {
     background-color: #31363F;
+  }
+  #navbar .navbar-brand img {
+    width: 60px;
+    height: 60px;
   }
   #navbar #navbarSupportedContent .text-nav {
     transition: background-color 0.3s ease-out;

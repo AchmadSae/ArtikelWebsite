@@ -1,7 +1,7 @@
 @import '_var';
 
 #main {
-   padding: 2em 5em 5em 5em;
+   padding:5em;
    height: auto;
 
    .box-title{
@@ -79,8 +79,7 @@
 #sourceInformation{
     .row {
         padding: 0 1em 0 1em;
-        background-color: $color1;
-        .bibliography {
+        .biography { 
             max-width: 600px;
             padding: 20px;
             background-color: $color4;
@@ -136,7 +135,7 @@
                     }
         
                     &:hover {
-                        color: $color4;
+                        color: $color1;
                     }
         
                     &:hover span {
@@ -152,6 +151,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.3s ease-out; // Transition for background color
+    &:hover {
+      background-color: $color4;
+    }
     .card {
       width: 15rem;
       height: 25rem;
@@ -199,9 +202,10 @@
         cursor: pointer;
         border: none;
         transition: border 1s ease-out;
+        transition: color 0.3s ease-out; // Transition for background color
         &:hover {
-          color: $color-warning;
-          border: 2px solid $color-warning;
+          color: $color3;
+          border: 2px solid $color3;
           border-radius: 4px;
         }
       }

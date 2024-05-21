@@ -56,15 +56,15 @@
 
     <section id="sourceInformation">
         <div class="row">
-            <div class="col-lg-6 col-sm-12">
-                <div class="bibliography">
-                    <span><i class="fa-solid fa-book"></i> Those Information based on data from : </span>
-                    <ul class="list-group list-group-flush">
-                    <?= $key['dictionary']; ?>
-                    </ul>
+                <div class="col-lg-6 col-sm-12 col-md-12 d-flex justify-content-center">
+                    <div class="biography">
+                        <span><i class="fa-solid fa-book"></i> Those Information based on data from : </span>
+                        <ul class="list-group list-group-flush">
+                        <?= $key['dictionary']; ?>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6 col-sm-12 related">
+            <div class="col-lg-6 col-sm-12 col-md-12 related">
                 <ul class="horizontal-list">
                     <?= $key['relatedSource']; ?>
                 </ul>
@@ -75,7 +75,7 @@
 <?php
 $base_url = base_url();
 ?>
-<section id="artikel-list">
+<section id="artikel-list" class="mt-4">
     <?php foreach ($allArtikel as $key => $data): ?>
         <div class="card">
             <?php $image_url = $base_url . '/' . $data['main_img']; ?>

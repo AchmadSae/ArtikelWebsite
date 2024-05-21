@@ -7,11 +7,11 @@ use CodeIgniter\Model;
 class UsersModel extends Model
 {
     protected $table = 'users';
-    protected $primaryKey = 'email';
-    protected $useAutoIncrement = false;
+    protected $primaryKey = 'id';
+    protected $useAutoIncrement = true;
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['email', 'name', 'isLogged', 'isLogged'];
+    protected $allowedFields = ['id','username','password','email'];
 
 
     // Dates
@@ -23,11 +23,16 @@ class UsersModel extends Model
 
     // Validation
     protected $validationRules = [
-        'email' => 'required|valid_email',
+        'username' =>'required|max_length[20]|is_unique',
+        'email' => 'required|valid_email|is_unique[users.email]',
     ];
     protected $validationMessages = [
         'email' => [
-            'valid_email' => 'please enter valid email address'
+            'valid_email' => 'please enter valid email address',
+            'is_unique' => 'This email address is already registered.',
+        ],
+        'password_confirm' => [
+            'matches' => 'The password confirmation does not match the password.'
         ]
     ];
     protected $skipValidation = false;
@@ -39,6 +44,11 @@ class UsersModel extends Model
         parent::__construct();
     }
 
+    public function getUser($username){
+        return $this->where('username', $username)
+                ->orWhere('email', $username)
+                ->first();
+    }
     public function GuestArrived($guestData)
     {
         return $this->db->insert('users', $guestData);

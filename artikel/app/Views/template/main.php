@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> <?php echo $titleWeb; ?> </title>
+    <link rel="icon" href="<?php echo base_url('img/icons/MyLogo.png'); ?>" type="image/png">
     <link rel="stylesheet" href=" <?= base_url('css/bootstrap.min.css'); ?> ">
     <!-- style our css  -->
     <link rel="stylesheet" href="<?= base_url('/css/artikel.css'); ?> ">

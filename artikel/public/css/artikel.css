@@ -20,7 +20,7 @@
   src: url("../font/Monoton-Regular.ttf");
 }
 #main {
-  padding: 2em 5em 5em 5em;
+  padding: 5em;
   height: auto;
 }
 #main .box-title {
@@ -112,28 +112,27 @@
 
 #sourceInformation .row {
   padding: 0 1em 0 1em;
-  background-color: #31363F;
 }
-#sourceInformation .row .bibliography {
+#sourceInformation .row .biography {
   max-width: 600px;
   padding: 20px;
   background-color: #f9f9f9;
 }
-#sourceInformation .row .bibliography h2 {
+#sourceInformation .row .biography h2 {
   text-align: center;
   color: #31363F;
 }
-#sourceInformation .row .bibliography ul {
+#sourceInformation .row .biography ul {
   padding: 0;
 }
-#sourceInformation .row .bibliography li {
+#sourceInformation .row .biography li {
   margin-bottom: 10px;
   padding-left: 20px;
   position: relative;
   list-style: none;
   background-color: #f9f9f9;
 }
-#sourceInformation .row .bibliography li:before {
+#sourceInformation .row .biography li:before {
   content: "•";
   position: absolute;
   left: 0;
@@ -167,7 +166,7 @@
   display: none;
 }
 #sourceInformation .row .related .horizontal-list li:hover {
-  color: #f9f9f9;
+  color: #31363F;
 }
 #sourceInformation .row .related .horizontal-list li:hover span {
   display: inline;
@@ -177,6 +176,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease-out;
+}
+#artikel-list:hover {
+  background-color: #f9f9f9;
 }
 #artikel-list .card {
   width: 15rem;
@@ -222,10 +225,11 @@
   cursor: pointer;
   border: none;
   transition: border 1s ease-out;
+  transition: color 0.3s ease-out;
 }
 #artikel-list .card a:hover {
-  color: #FFC470;
-  border: 2px solid #FFC470;
+  color: #76ABAE;
+  border: 2px solid #76ABAE;
   border-radius: 4px;
 }
 #artikel-list .card:hover h5 {

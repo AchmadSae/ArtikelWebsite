@@ -48,6 +48,13 @@
                     Please give your artikel title
                 </div>
             </div>
+            <div class="col-lg-12 col-sm-12 col-md-12">
+                <label for="validationCustom03" class="form-label">Quotes</label>
+                <textarea type="text" class="form-control" id="validationCustom01" rows="2"></textarea>
+                <div class="invalid-feedback">
+                   Please create quotes in your artikel
+                </div>
+            </div>
         </div>
         <div class="urls row g-1">
             <p><i class="fa-solid fa-globe"></i> Fill the related information on other resource (url) </p>
@@ -69,7 +76,9 @@
             </p>
             <div class="col-lg-12 col-sm-12 col-md-12">
                 <label for="validationCustom03" class="form-label">Dictionary</label>
-                <textarea type="text" class="form-control" id="validationCustom01" rows="4" required></textarea>
+                <textarea type="text" class="form-control" id="validationCustom01" rows="4" required>
+                &lt;li class="list-group-item"&gt;FILL THE URL SOURCE   OR ANOTHER INFORMATION !.&lt;/li&gt;
+                </textarea>
                 <div class="invalid-feedback">
                 </div>
             </div>

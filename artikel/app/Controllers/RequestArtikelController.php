@@ -9,6 +9,10 @@ class RequestArtikelController extends BaseController
 {
     public function index()
     {
-        return view('RequestArtikelView');
+        session();
+        $data = [
+            'titleWeb' => 'Write Artikel',
+        ];
+        return view('RequestArtikelView', $data);
     }
 }
