@@ -11,7 +11,7 @@ class UsersModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['id','username','password','email'];
+    protected $allowedFields = ['id', 'username', 'password', 'email'];
 
 
     // Dates
@@ -21,20 +21,7 @@ class UsersModel extends Model
     protected $updatedField = 'updated_at';
     protected $deletedField = 'deleted_at';
 
-    // Validation
-    protected $validationRules = [
-        'username' =>'required|max_length[20]|is_unique',
-        'email' => 'required|valid_email|is_unique[users.email]',
-    ];
-    protected $validationMessages = [
-        'email' => [
-            'valid_email' => 'please enter valid email address',
-            'is_unique' => 'This email address is already registered.',
-        ],
-        'password_confirm' => [
-            'matches' => 'The password confirmation does not match the password.'
-        ]
-    ];
+
     protected $skipValidation = false;
     protected $cleanValidationRules = true;
 
@@ -44,10 +31,10 @@ class UsersModel extends Model
         parent::__construct();
     }
 
-    public function getUser($username){
+    public function getUser($username)
+    {
         return $this->where('username', $username)
-                ->orWhere('email', $username)
-                ->first();
+            ->first();
     }
     public function GuestArrived($guestData)
     {

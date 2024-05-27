@@ -3,71 +3,57 @@
 namespace App\Controllers;
 
 
-use CodeIgniter\Test\CIUnitTestCase;
+use CodeIgniter\Test\FeatureTestCase;
 use CodeIgniter\Test\ControllerTestTrait;
-use CodeIgniter\Test\DatabaseTestTrait;
+use CodeIgniter\Test\ControllerTester;
 use App\Models\UsersModel;
 use CodeIgniter\Config\Factories;
 
-class AuthTest extends CIUnitTestCase
+class AuthTest extends FeatureTestCase
 {
-
-    use ControllerTestTrait;
-    use DatabaseTestTrait;
+    use ControllerTester;
 
     protected $mockSession;
     protected $mockUsersModel;
-
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
-        // Mock the session
-        $this->mockSession = $this->createMock(\CodeIgniter\Session\Session::class);
-        $this->mockSession->method('start')->willReturn(true);
-        $this->mockSession->method('get')->willReturn([]);
-        $this->mockSession->method('set')->willReturn(null);
-        \Config\Services::injectMock('session', $this->mockSession);
-
-        // Mock the UsersModel
-        $this->mockUsersModel = $this->createMock(UsersModel::class);
-        \Config\Services::injectMock('models', 'UsersModel', $this->mockUsersModel);
-
-        // Load the form helper
-        helper('form');
+        // Ensure the base URL is set correctly in the test environment
+        $_SERVER['HTTP_HOST'] = 'localhost:8080';
+        $_SERVER['REQUEST_URI'] = '/loginUp';
     }
-
     public function testLoginValidationFails()
     {
-        $this->mockUsersModel->method(('getUser'))
-            ->willReturn(null);
-        Factories::injectMock('models', 'UsersModel', $this->mockUsersModel);
+          // Simulate a POST request to the /loginUp route with invalid data
+          $result = $this->withHeaders([
+            'Host' => 'localhost:8080'
+        ])->post('/loginUp', [
+            'username' => '', // Empty username should fail validation
+            'password' => ''  // Empty password should fail validation
+        ]);
 
-        $result = $this->withRequest(
-            $this->getRequestObject([
-                'username' => 'nonExistUser',
-                'password' => 'wrong'
-            ])
-        )->controller(\App\Controllers\AuthController::class)
-            ->execute('login');
-        $this->assertTrue($result->see('Username field is required.', 'validation'));
+        // Debugging output
+        echo "Status Code: " . $result->response()->getStatusCode() . PHP_EOL;
+        echo "Response Body: " . $result->response()->getBody() . PHP_EOL;
+
+        // Ensure that the response status is 401 Unauthorized
+        $this->assertEquals(401, $result->response()->getStatusCode());
+
+        // Check for validation errors in the response body
+        $this->assertStringContainsString('Username Or Password is Required', $result->response()->getBody());
     }
 
     public function testLoginWithInvalidCredentials()
     {
-        $this->mockUsersModel->method(('getUser'))
-            ->willReturn(null);
-        Factories::injectMock('models', 'UsersModel', $this->mockUsersModel);
-
-        $result = $this->withRequest(
-            $this->getRequestObject([
-                'username' => 'nonExistUser',
-                'password' => 'wrong'
+        $result = $this->withURI('http://localhost:8080/loginUp')
+            ->withBody([
+                'username' => 'wrongUsername', // Empty username should fail validation
+                'password' => 'wrongPass'  // Empty password should fail validation
             ])
-        )->controller(\App\Controllers\AuthController::class)
+            ->controller(\App\Controllers\AuthController::class)
             ->execute('login');
-        $this->assertTrue($result->see('Invalid login credentials', 'validation'));
-
+        $this->assertTrue($result->see('Invalid login credentials', 'loginView'));
     }
 
     public function testValid()

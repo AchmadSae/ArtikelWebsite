@@ -11,7 +11,9 @@ $routes->group('blog', ['namespace' => '\App\Controllers'], function ($routes) {
     $routes->get('(:segment)', 'ArtikelController::find/$1'); // Route for dynamic segments
 });
 $routes->get('/create_artikel', 'RequestArtikelController::index');
-$routes->get('/login', 'Auth::login');
-$routes->get('/signUp', 'Auth::signUp');
+$routes->get('/login', 'AuthController::index');
+$routes->post('/loginUp', 'AuthController::login');
+
+$routes->get('/signUp', 'AuthController::signUp');
 
 

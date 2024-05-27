@@ -9,6 +9,13 @@ use Config\Session;
 
 class AuthController extends BaseController
 {
+    public function index()
+    {
+        $data = [
+            'titleWeb' => 'Login',
+        ];
+        return view('loginView', $data);
+    }
     public function login()
     {
         // Start the session
@@ -19,16 +26,16 @@ class AuthController extends BaseController
         if ($this->request->getMethod() == 'post') {
             // Validation rules
             $isValid = [
-                'username' => 'required|valid_email',
+                'username' => 'required',
                 'password' => 'required'
             ];
 
             // Validate user input
             if (!$this->validate($isValid)) {
-                return view('loginView', [
-                    'validation' => $this->validator,
+                return $this->response->setStatusCode(401)->setBody(view('loginView', [
+                    'validation' => "Username Or Password is Required",
                     'titleWeb' => 'Login',
-                ]);
+                ]));
             }
 
             // Get data from request
@@ -45,10 +52,10 @@ class AuthController extends BaseController
                 ]);
                 return redirect()->to('/create_artikel');
             } else {
-                return view('loginView', [
-                    'error' => 'Invalid login credentials',
+                return $this->response->setStatusCode(401)->setBody(view('loginView', [
+                    'validation' => "Username And Password is Wrong",
                     'titleWeb' => 'Login'
-                ]);
+                ]));
             }
         }
 
@@ -58,6 +65,8 @@ class AuthController extends BaseController
         ];
         return view('loginView', $data);
     }
+
+
 
     public function logOut()
     {
