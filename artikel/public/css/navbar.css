@@ -28,6 +28,10 @@
     width: 60px;
     height: 60px;
   }
+  #navbar #navbarSupportedContent .active .nav-link {
+    background-color: rgba(175, 182, 180, 0.6392156863);
+    color: white;
+  }
   #navbar #navbarSupportedContent .text-nav {
     border-left: 4px solid #76ABAE;
     margin-left: 2em;
@@ -43,6 +47,28 @@
   }
   #navbar #navbarSupportedContent .text-nav a:hover {
     color: white;
+  }
+  #navbar #navbarSupportedContent .users-icon {
+    border: 2px solid #76ABAE;
+    border-radius: 30px;
+    margin-left: 2em;
+    transition: background-color 0.3s ease-out;
+  }
+  #navbar #navbarSupportedContent .users-icon:hover {
+    background-color: #76ABAE;
+  }
+  #navbar #navbarSupportedContent .users-icon a {
+    color: #76ABAE;
+  }
+  #navbar #navbarSupportedContent .users-icon a:hover {
+    color: white;
+  }
+  #navbar #navbarSupportedContent .dropdown-menu .active {
+    background-color: #76ABAE;
+    color: white;
+  }
+  #navbar #navbarSupportedContent .dropdown-menu .active:hover {
+    background-color: #5a9497;
   }
   #navbar #navbarSupportedContent .form-search input {
     color: #31363F;
@@ -88,6 +114,18 @@
     font-weight: 600;
   }
   #navbar #navbarSupportedContent .text-nav a:hover {
+    color: #76ABAE;
+  }
+  #navbar #navbarSupportedContent .users-icon {
+    transition: background-color 0.3s ease-out;
+  }
+  #navbar #navbarSupportedContent .users-icon:hover {
+    border-bottom: 4px solid #76ABAE;
+  }
+  #navbar #navbarSupportedContent .users-icon a {
+    color: white;
+  }
+  #navbar #navbarSupportedContent .users-icon a:hover {
     color: #76ABAE;
   }
   #navbar #navbarSupportedContent .form-search input :focus {

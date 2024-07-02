@@ -49,6 +49,11 @@ class Autoload extends AutoloadConfig
     ];
 
     /**
+     * Auto-load libraries
+     */
+    public $libraries = ['database', 'session'];
+
+    /**
      * -------------------------------------------------------------------
      * Class Map
      * -------------------------------------------------------------------
@@ -95,5 +100,5 @@ class Autoload extends AutoloadConfig
      *
      * @var list<string>
      */
-    public $helpers = [];
+    public $helpers = ['url', 'form'];
 }

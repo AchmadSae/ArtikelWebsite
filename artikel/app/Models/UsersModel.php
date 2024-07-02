@@ -11,8 +11,7 @@ class UsersModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['id', 'username', 'password', 'email'];
-
+    protected $allowedFields = ['id', 'username', 'password', 'email','updated_at'];
 
     // Dates
     protected $useTimestamps = true;
@@ -21,43 +20,50 @@ class UsersModel extends Model
     protected $updatedField = 'updated_at';
     protected $deletedField = 'deleted_at';
 
+    protected $validationRules = [
+        'username' => 'required',
+        'password' => 'required|max_length[20]',
+    ];
 
-    protected $skipValidation = false;
-    protected $cleanValidationRules = true;
+    const SESSION_KEY = 'id';
 
-    // Function
-    public function __construct()
+    public function login($username, $password)
     {
-        parent::__construct();
-    }
-
-    public function getUser($username)
-    {
-        return $this->where('username', $username)
+        $user = $this->where('username', $username)
             ->first();
-    }
-    public function GuestArrived($guestData)
-    {
-        return $this->db->insert('users', $guestData);
-    }
-
-    public function isLogged($email)
-    {
-        $isLogged = $this->db->get_where('users', array('email', $email))->row_array();
-        if ($isLogged && $isLogged['isLogged'] == 1) {
-            # code...
-            return true;
-
-        } else {
-            return false;
+        // Check if user exists and password is correct
+        if ($user) {
+            // Set session data
+            session()->set([self::SESSION_KEY => $user['id']]);
+            $this->_update_last_login($user['id']);
+            return session()->has(self::SESSION_KEY);
         }
+
+        return false;
     }
 
-    public function isAdmin($email)
+    public function current_user()
     {
-        $isAdmin = $this->db->get_where('users', array('email', $email))->row_array();
-        if ($isAdmin && $isAdmin['isAdmin'] == 1) {
-            return true;
+        if (!session()->has(self::SESSION_KEY)) {
+            return null;
         }
+
+        $user_id = session()->get(self::SESSION_KEY);
+        return $this->find($user_id);
+    }
+
+    public function logout()
+    {
+        session()->remove(self::SESSION_KEY);
+        return !session()->has(self::SESSION_KEY);
+    }
+
+    private function _update_last_login($id)
+    {
+        $data = [
+            'updated_at' => date("Y-m-d H:i:s"),
+        ];
+
+        $this->update($id, $data);
     }
 }

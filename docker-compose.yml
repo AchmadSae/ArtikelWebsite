@@ -21,8 +21,6 @@ services:
       MYSQL_PASSWORD: sae_user
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
     volumes:
-      # - "./portfolioV2:/docker-entrypoint-initdb.d"
-      # - "./portfolioV2:/var/www/html"
       - mysql_data:/var/lib/mysql
     ports:
       - 3306:3306

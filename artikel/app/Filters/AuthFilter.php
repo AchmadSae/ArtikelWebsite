@@ -5,17 +5,19 @@ namespace App\Filters;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use App\Models\UsersModel;
 
-class GuestFilter implements FilterInterface
+class AuthFilter implements FilterInterface
 {
+
     public function before(RequestInterface $request, $arguments = null)
     {
-        //check isGuest are arrived before
-        if (!session()->get('isLoggedIn')) {
-            # code...
-            return $request;
+        $usersModel = new UsersModel();
+
+        if (!session()->has($usersModel::SESSION_KEY) || !$usersModel->current_user()) {
+            return redirect()->to('/auth');
         }
-        return redirect()->to('/artikel');
+
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)

@@ -7,6 +7,8 @@
     <title> <?php echo $titleWeb; ?> </title>
     <link rel="icon" href="<?php echo base_url('img/icons/MyLogo.png'); ?>" type="image/png">
     <link rel="stylesheet" href=" <?= base_url('css/bootstrap.min.css'); ?> ">
+    <link rel="stylesheet" href=" <?= base_url('css/sweetalert2.min.css'); ?> ">
+
     <!-- style our css  -->
     <link rel="stylesheet" href="<?= base_url('/css/artikel.css'); ?> ">
     <link rel="stylesheet" href="<?= base_url('/css/navbar.css'); ?> ">
@@ -26,11 +28,19 @@
 
 <body>
     <?= $this->renderSection('content') ?>
+    <script src=" <?= base_url('js/bootstrap.bundle.min.js'); ?> "></script>
+    <script src=" <?= base_url('js/sweetalert2.min.js'); ?> "></script>
     <script>
         // Mendefinisikan base_url di JavaScript
         const base_url = "<?= base_url(); ?>";
+        <?php if (session()->getFlashdata('isAlert') == true): ?>
+            Swal.fire({
+                icon: '<?= session()->getFlashdata('iconMsg') ?>',
+                title: 'Message',
+                text: '<?= session()->getFlashdata('message') ?>'
+            });
+        <?php endif; ?>
     </script>
-    <script src=" <?= base_url('js/bootstrap.bundle.min.js'); ?> "></script>
     <script src=" <?= base_url('js/artikel.js'); ?> "></script>
 </body>
 

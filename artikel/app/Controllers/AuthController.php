@@ -4,100 +4,81 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UsersModel;
-use CodeIgniter\HTTP\ResponseInterface;
-use Config\Session;
 
 class AuthController extends BaseController
 {
+    protected $usersModel;
+    protected $request;
+
+    public function __construct()
+    {
+        $this->session = \Config\Services::session();
+        $this->usersModel = new UsersModel();
+        // $this->request = $request ?? \Config\Services::request();
+    }
     public function index()
     {
+        $isLoggedIn = true;
+        if (!$this->usersModel->current_user()) {
+            # code...
+            $isLoggedIn = false;
+        }
         $data = [
-            'titleWeb' => 'Login',
+           'isLoggedIn' => $isLoggedIn,
+           'titleWeb' => 'Login'
         ];
-        return view('loginView', $data);
+        return view('LoginView', $data);
     }
+
+
+    public function register()
+    {
+        $val = $this->usersModel->ValidationRules;
+        if (!$this->validation($val)) {
+            $pesanvalidasi = \Config\Services::validation();
+            return redirect()->to('/login')->withInput()->with('validation', $pesanvalidasi)
+                ->with('titleWeb', 'Login');
+        }
+        $data = array(
+            'nama' => $this->request->getPost('nama'),
+            'username' => $this->request->getPost('username'),
+            'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+            'insta_name' => $this->request->getPost('insta'),
+        );
+        $this->usersModel->insert($data);
+        session()->setFlashdata('message', 'Success login!');
+        return redirect()->to('/login')->with('titleWeb', 'Login');
+    }
+
     public function login()
     {
-        // Start the session
-        $session = session();
-        $model = new UsersModel();
         helper(['form']);
+        // Check if this is a POST request
+        $username = $this->request->getVar('username');
+        $password = $this->request->getVar('password');
+        $validationRules = $this->usersModel->validationRules;
 
-        if ($this->request->getMethod() == 'post') {
-            // Validation rules
-            $isValid = [
-                'username' => 'required',
-                'password' => 'required'
-            ];
-
-            // Validate user input
-            if (!$this->validate($isValid)) {
-                return $this->response->setStatusCode(401)->setBody(view('loginView', [
-                    'validation' => "Username Or Password is Required",
-                    'titleWeb' => 'Login',
-                ]));
-            }
-
-            // Get data from request
-            $username = $this->request->getVar('username');
-            $password = $this->request->getVar('password');
-            $user = $model->getUser($username);
-
-            // Verify user credentials
-            if ($user && password_verify($password, $user['password'])) {
-                $session->set([
-                    'username' => $user['username'],
-                    'password' => $user['password'],
-                    'isLoggedIn' => true
-                ]);
-                return redirect()->to('/create_artikel');
-            } else {
-                return $this->response->setStatusCode(401)->setBody(view('loginView', [
-                    'validation' => "Username And Password is Wrong",
-                    'titleWeb' => 'Login'
-                ]));
-            }
+        if (!$this->validate($validationRules)) {
+            $validation = \Config\Services::validation();
+            $errors = $validation->getErrors();
+            return redirect()->back()->with('titleWeb', 'Login')->with('validation', $errors);
+        } else if ($this->usersModel->login($username, $password)) {
+            session()->setFlashdata('message', 'Success Login');
+            session()->setFlashdata('iconMsg', 'success');
+            session()->setFlashdata('isAlert', true);
+            return redirect()->to('/creator/create_artikel')->with('iconMsg', 'success');
+        } else {
+            session()->setFlashdata('message', 'Username and Password is incorrect!');
+            session()->setFlashdata('iconMsg', 'error');
+            session()->setFlashdata('isAlert', true);
+            return redirect()->back();
         }
-
-        // Default view data
-        $data = [
-            'titleWeb' => 'Login',
-        ];
-        return view('loginView', $data);
     }
 
-
-
-    public function logOut()
+    public function logout()
     {
-        $session = session();
-        $session->destroy();
-        return redirect()->to('/login');
+        $this->usersModel->logout();
+        return redirect()->to('/');
     }
-    public function signUp()
-    {
-        helper(['form']);
-        $model = new UsersModel();
-        if ($this->request->getMethod() == 'post') {
-            $newUser = [
-                'username' => $this->request->getVar('username'),
-                'email' => $this->request->getVar('email'),
-                'instagram_name' => $this->request->getVar('instName')
-            ];
-            if (!$model->save($newUser)) {
-                return view('login', [
-                    'validation' => $model->errors(),
-                    'titleWeb' => 'login'
-                ]);
-            }
-            return redirect()->to('/login');
-        }
-        $data = [
-            'titleWeb' => 'Sign In',
-        ];
-        return view('signUpView', $data);
-
-    }
-
 
 }

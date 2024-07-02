@@ -1,90 +1,65 @@
 <?php
 
-namespace App\Controllers;
+namespace Tests\Unit;
 
-
-use CodeIgniter\Test\FeatureTestCase;
+use CodeIgniter\Test\CIUnitTestCase;
+use App\Controllers\AuthController;
 use CodeIgniter\Test\ControllerTestTrait;
-use CodeIgniter\Test\ControllerTester;
-use App\Models\UsersModel;
-use CodeIgniter\Config\Factories;
+use Config\Services;
+use Test\Unit\uri;
 
-class AuthTest extends FeatureTestCase
+class AuthTest extends CIUnitTestCase
 {
-    use ControllerTester;
-
-    protected $mockSession;
-    protected $mockUsersModel;
-    protected function setUp(): void
+    use ControllerTestTrait;
+    public function setUp(): void
     {
-        parent::setUp();
-
-        // Ensure the base URL is set correctly in the test environment
-        $_SERVER['HTTP_HOST'] = 'localhost:8080';
-        $_SERVER['REQUEST_URI'] = '/loginUp';
     }
-    public function testLoginValidationFails()
+
+    public function testPage()
     {
-          // Simulate a POST request to the /loginUp route with invalid data
-          $result = $this->withHeaders([
-            'Host' => 'localhost:8080'
-        ])->post('/loginUp', [
-            'username' => '', // Empty username should fail validation
-            'password' => ''  // Empty password should fail validation
+        // Simulate a call to the 'index' method
+        $result = $this->withURI('http://localhost:8080/login')
+            ->controller(AuthController::class)
+            ->execute('login');
+
+        $this->assertTrue($result->isOK());
+        $this->assertStringContainsString('<title> Login </title>', $result->getBody());
+    }
+    public function testValidationFails()
+    {// Simulate a POST request to /auth/login with invalid data
+        $result = $this->withRequest('post', '/auth/login', [
+            'username' => '',
+            'password' => ''
         ]);
 
-        // Debugging output
-        echo "Status Code: " . $result->response()->getStatusCode() . PHP_EOL;
-        echo "Response Body: " . $result->response()->getBody() . PHP_EOL;
-
-        // Ensure that the response status is 401 Unauthorized
-        $this->assertEquals(401, $result->response()->getStatusCode());
-
-        // Check for validation errors in the response body
-        $this->assertStringContainsString('Username Or Password is Required', $result->response()->getBody());
+        // Check for validation errors
+        $result->assertR
+        $result->assertSessionHas('validation');
     }
 
-    public function testLoginWithInvalidCredentials()
+    public function testLoginSuccess()
     {
-        $result = $this->withURI('http://localhost:8080/loginUp')
-            ->withBody([
-                'username' => 'wrongUsername', // Empty username should fail validation
-                'password' => 'wrongPass'  // Empty password should fail validation
-            ])
-            ->controller(\App\Controllers\AuthController::class)
-            ->execute('login');
-        $this->assertTrue($result->see('Invalid login credentials', 'loginView'));
+        $controller = new AuthController();
+
+        // Simulate a request with valid credentials
+        $_POST['username'] = 'valid_username';
+        $_POST['password'] = 'valid_password';
+
+        // Call the method directly
+        $result = $controller->login();
+
+        // Assert the redirect response
+        $this->assertEquals('http://localhost:8080/RequestArtikelView', $result->getRedirectUrl());
     }
 
-    public function testValid()
+    public function testLogout()
     {
-        // Mock a user with a hashed password
-        $user = [
-            'username' => 'testuser',
-            'email' => 'testuser@example.com',
-            'password' => password_hash('validpassword', PASSWORD_DEFAULT)
-        ];
+        $controller = new AuthController();
 
-        $this->mockUsersModel->method('getUser')
-            ->willReturn($user);
-        Factories::injectMock('models', 'UsersModel', $this->mockUsersModel);
+        // Call the logout method directly
+        $result = $controller->logout();
 
-        $result = $this->withRequest(
-            $this->getRequestObject([
-                'username' => 'testuser',
-                'password' => 'validpassword'
-            ])
-        )->controller(\App\Controllers\Login::class)
-            ->execute('login');
-
-        $this->assertTrue($result->isRedirect());
-        $this->assertEquals('/create_artikel', $result->getRedirectUrl());
-    }
-    private function getRequestObject(array $postData)
-    {
-        $request = service('request');
-        $request->setMethod('post');
-        $request->setGlobal('post', $postData);
-        return $request;
+        // Assert the redirect response
+        $this->assertEquals('http://localhost:8080/ArtikelView', $result->getRedirectUrl());
     }
 }

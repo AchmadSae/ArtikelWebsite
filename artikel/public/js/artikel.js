@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 document.addEventListener("DOMContentLoaded", (event) => {
   let scrollStep = 0;
   window.addEventListener("scroll", () => {
@@ -15,3 +16,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 });
+// Trigger SweetAlert2 based on flash data
+Swal.fire({
+  title: 'Error!',
+  text: 'Do you want to continue',
+  icon: 'error',
+  confirmButtonText: 'Cool'
+})

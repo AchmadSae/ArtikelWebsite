@@ -8,19 +8,27 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item text-nav">
-                    <a class="nav-link" href="#">
-                        Favorite
-                    </a>
+                <li class="nav-item text-nav  <?php echo ($titleWeb == 'Home | Artikel') ? 'active' : ''; ?>">
+                    <a class="nav-link" href="#">HOME</Article></a>
                 </li>
-                <li class="nav-item text-nav">
-                    <a class=" nav-link" href="/create_artikel">Write</a>
+                <li class="nav-item text-nav  <?php echo ($titleWeb == 'Write Article') ? 'active' : ''; ?>">
+                    <a class="nav-link" href="creator/create_artikel">REQUEST ARTICLE</Article></a>
                 </li>
             </ul>
-            <form class="d-flex form-search" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn" type="submit">Search</button>
-            </form>
+            <?php if ($isLoggedIn == true): ?>
+                <button class="btn btn-secondary dropdown-toggle users-icon" type="button" id="dropdownMenuButton2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user-pen"> </i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item active" href="#">Favorite</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="/auth/logOut">Log Out</a></li>
+                </ul>
+            <?php endif; ?>
+
         </div>
     </div>
 </nav>

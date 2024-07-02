@@ -4,21 +4,34 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ArtikelModel;
-use CodeIgniter\HTTP\ResponseInterface;
-use Config\Validation;
+use App\Models\UsersModel;
 
 class ArtikelController extends BaseController
 {
+    protected $usersModel;
+    public function __construct()
+    {
+        $this->usersModel = new UsersModel();
+        $this->session = \Config\Services::session();
+    }
 
     public function index()
     {
         session();
+        // debug key session 
+        // var_dump(session()->get($this->usersModel::SESSION_KEY));
         $artikelModel = new ArtikelModel();
+        $isLoggedIn = true;
+        if (!$this->usersModel->current_user()) {
+            # code...
+            $isLoggedIn = false;
+        }
         // echo "index method ";
         $data = [
             'dataArtikel' => $artikelModel->getArtikel(null),
-            'titleWeb' => 'Artikel',
+            'titleWeb' => 'Home | Artikel',
             'allArtikel' => $artikelModel->getAllArtikel(),
+            'isLoggedIn' => $isLoggedIn,
         ];
         // var_dump($data);
         return view('ArtikelView', $data);
@@ -26,10 +39,13 @@ class ArtikelController extends BaseController
 
     public function find($id_artikel)
     {
-        session();
         $artikelModel = new ArtikelModel();
-        echo "find method ";
+        echo "find method in Artikel Controller that data artikel is ";
         $data = $artikelModel->getArtikel($id_artikel);
-        var_dump($data);
+        if ($data == null) {
+            # code...
+            return redirect()->back()->with('massage', 'Artikel not available')->with('iconMsg', 'info');
+        }
+        return view('ArtikelView', $data);
     }
 }

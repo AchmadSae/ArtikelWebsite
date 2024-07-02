@@ -30,6 +30,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Instal ekstensi PHP yang diperlukan
 RUN docker-php-ext-install gettext intl mysqli pdo pdo_mysql gd zip
+RUN apt-get update && apt-get install -y default-mysql-client
 
 # Konfigurasi dan instal ekstensi gd
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \

@@ -35,10 +35,8 @@ class ArtikelModel extends Model
 
     function getArtikel($id_artikel)
     {
-        // Debugging statement
         $artikelData = null;
         if ($id_artikel === null) {
-            // echo "ID Artikel Null Model : $id_artikel";
             $artikelData = $this->first();
         }
         $artikelData = $this->find($id_artikel);

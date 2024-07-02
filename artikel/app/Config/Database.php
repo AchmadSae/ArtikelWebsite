@@ -51,10 +51,10 @@ class Database extends Config
      */
     public $tests = [
         'DSN' => '',
-        'hostname' => 'localhost',
-        'username' => '',
-        'password' => '',
-        'database' => '',
+        'hostname' => '172.17.0.1',
+        'username' => 'portfolio_user',
+        'password' => 'sae_user',
+        'database' => 'portfolio_db',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
