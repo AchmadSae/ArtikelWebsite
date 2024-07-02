@@ -18,7 +18,7 @@
             <?php if ($isLoggedIn == true): ?>
                 <button class="btn btn-secondary dropdown-toggle users-icon" type="button" id="dropdownMenuButton2"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-user-pen"> </i>
+                    <i class="fa-solid fa-user-pen"><span> </span> </i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
                     <li><a class="dropdown-item active" href="#">Favorite</a></li>

@@ -11,7 +11,7 @@ class UsersModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['id', 'username', 'password', 'email','updated_at'];
+    protected $allowedFields = ['id', 'username', 'password', 'instagram_name', 'updated_at'];
 
     // Dates
     protected $useTimestamps = true;
@@ -20,9 +20,10 @@ class UsersModel extends Model
     protected $updatedField = 'updated_at';
     protected $deletedField = 'deleted_at';
 
+    //validation when login
     protected $validationRules = [
         'username' => 'required',
-        'password' => 'required|max_length[20]',
+        'password' => 'required',
     ];
 
     const SESSION_KEY = 'id';
@@ -32,7 +33,7 @@ class UsersModel extends Model
         $user = $this->where('username', $username)
             ->first();
         // Check if user exists and password is correct
-        if ($user) {
+        if ($user && password_verify($password, $user['password'])) {
             // Set session data
             session()->set([self::SESSION_KEY => $user['id']]);
             $this->_update_last_login($user['id']);
@@ -40,6 +41,11 @@ class UsersModel extends Model
         }
 
         return false;
+    }
+
+    function getUser($username){
+        $user = $this->where($username)->first();
+        return $user['username'];
     }
 
     public function current_user()
@@ -65,5 +71,23 @@ class UsersModel extends Model
         ];
 
         $this->update($id, $data);
+    }
+
+    public function signUp($data)
+    {
+        var_dump($data);
+        // Insert the user data
+        if ($this->save($data)) {
+            return [
+                'status' => true,
+                'message' => 'User created successfully.'
+            ];
+        } else {
+            return [
+                'status' => false,
+                'message' => 'Failed to create user.'
+            ];
+        }
+
     }
 }

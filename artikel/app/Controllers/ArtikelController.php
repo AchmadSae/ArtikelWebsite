@@ -22,7 +22,8 @@ class ArtikelController extends BaseController
         // var_dump(session()->get($this->usersModel::SESSION_KEY));
         $artikelModel = new ArtikelModel();
         $isLoggedIn = true;
-        if (!$this->usersModel->current_user()) {
+        $user_id = $this->usersModel->current_user();
+        if (!$user_id) {
             # code...
             $isLoggedIn = false;
         }
@@ -31,7 +32,7 @@ class ArtikelController extends BaseController
             'dataArtikel' => $artikelModel->getArtikel(null),
             'titleWeb' => 'Home | Artikel',
             'allArtikel' => $artikelModel->getAllArtikel(),
-            'isLoggedIn' => $isLoggedIn,
+            'isLoggedIn' => $isLoggedIn
         ];
         // var_dump($data);
         return view('ArtikelView', $data);

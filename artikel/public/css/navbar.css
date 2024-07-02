@@ -57,10 +57,10 @@
   #navbar #navbarSupportedContent .users-icon:hover {
     background-color: #76ABAE;
   }
-  #navbar #navbarSupportedContent .users-icon a {
+  #navbar #navbarSupportedContent .users-icon i {
     color: #76ABAE;
   }
-  #navbar #navbarSupportedContent .users-icon a:hover {
+  #navbar #navbarSupportedContent .users-icon i:hover {
     color: white;
   }
   #navbar #navbarSupportedContent .dropdown-menu .active {

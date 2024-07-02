@@ -18,7 +18,8 @@ $routes->group('auth', ['namespace' => '\App\Controllers'], function ($routes) {
     $routes->get('/', 'AuthController::index');
     $routes->get('logOut', 'AuthController::logOut');
     $routes->post('login', 'AuthController::login');
-    $routes->post('signUp', 'AuthController::signUp');
+    $routes->get('signUp', 'AuthController::signUp');
+    $routes->post('register', 'AuthController::register');
 });
 
 

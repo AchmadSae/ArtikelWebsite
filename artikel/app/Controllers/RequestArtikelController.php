@@ -9,20 +9,23 @@ use CodeIgniter\HTTP\ResponseInterface;
 class RequestArtikelController extends BaseController
 {
     protected $usersModel;
-    public function __construct(){
+    public function __construct()
+    {
         $this->usersModel = new UsersModel();
-        
+
     }
     public function index()
     {
         session();
-        if (!$this->usersModel->current_user()) {
+        $user_id = $this->usersModel->current_user();
+        if (!$user_id) {
             # code...
             return redirect()->to('/auth');
         }
         $data = [
             'titleWeb' => 'Write Article',
             'isLoggedIn' => true,
+            'username' => $user_id['username']
         ];
         return view('RequestArtikelView', $data);
     }

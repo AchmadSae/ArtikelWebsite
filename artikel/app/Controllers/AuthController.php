@@ -9,11 +9,11 @@ class AuthController extends BaseController
 {
     protected $usersModel;
     protected $request;
-
     public function __construct()
     {
         $this->session = \Config\Services::session();
         $this->usersModel = new UsersModel();
+
         // $this->request = $request ?? \Config\Services::request();
     }
     public function index()
@@ -24,30 +24,51 @@ class AuthController extends BaseController
             $isLoggedIn = false;
         }
         $data = [
-           'isLoggedIn' => $isLoggedIn,
-           'titleWeb' => 'Login'
+            'isLoggedIn' => $isLoggedIn,
+            'titleWeb' => 'Login'
         ];
         return view('LoginView', $data);
+    }
+    public function signUp()
+    {
+        $isLoggedIn = true;
+        if (!$this->usersModel->current_user()) {
+            # code...
+            $isLoggedIn = false;
+        }
+        $data = [
+            'isLoggedIn' => $isLoggedIn,
+            'titleWeb' => 'SignUp'
+        ];
+        return view('SignUpView', $data);
     }
 
 
     public function register()
     {
-        $val = $this->usersModel->ValidationRules;
-        if (!$this->validation($val)) {
-            $pesanvalidasi = \Config\Services::validation();
-            return redirect()->to('/login')->withInput()->with('validation', $pesanvalidasi)
-                ->with('titleWeb', 'Login');
+        $val = $this->usersModel->validationRules;
+        if (!$this->validate($val)) {
+            $validation = \Config\Services::validation();
+            $errors = $validation->getErrors();
+            return redirect()->back()->with('validation', $errors);
         }
         $data = array(
-            'nama' => $this->request->getPost('nama'),
             'username' => $this->request->getPost('username'),
             'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-            'insta_name' => $this->request->getPost('insta'),
+            'instagram_name' => $this->request->getPost('instagram_name'),
         );
-        $this->usersModel->insert($data);
-        session()->setFlashdata('message', 'Success login!');
-        return redirect()->to('/login')->with('titleWeb', 'Login');
+        $result = $this->usersModel->signUp($data);
+        if ($result['status']) {
+            session()->setFlashdata('message', $result['message']);
+            session()->setFlashdata('iconMsg', 'success');
+            session()->setFlashdata('isAlert', true);
+            return redirect()->to('/auth');
+        } else {
+            session()->setFlashdata('message', $result['message']);
+            session()->setFlashdata('iconMsg', 'error');
+            session()->setFlashdata('isAlert', true);
+            return redirect()->back();
+        }
     }
 
     public function login()
@@ -63,10 +84,11 @@ class AuthController extends BaseController
             $errors = $validation->getErrors();
             return redirect()->back()->with('titleWeb', 'Login')->with('validation', $errors);
         } else if ($this->usersModel->login($username, $password)) {
+            $user_id = $this->usersModel->current_user();
             session()->setFlashdata('message', 'Success Login');
             session()->setFlashdata('iconMsg', 'success');
             session()->setFlashdata('isAlert', true);
-            return redirect()->to('/creator/create_artikel')->with('iconMsg', 'success');
+            return redirect()->to('/creator/create_artikel')->with('username', $user_id['username']);
         } else {
             session()->setFlashdata('message', 'Username and Password is incorrect!');
             session()->setFlashdata('iconMsg', 'error');

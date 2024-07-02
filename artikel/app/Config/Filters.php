@@ -40,7 +40,7 @@ class Filters extends BaseConfig
             // 'csrf',
             // 'invalidchars',
             // Terapkan filter 'auth' sebelum memproses request
-            'auth' => ['except' => ['/auth/login', '/auth/signUp', '/auth', '/auth/logOut','/']], // Tambahkan route yang tidak memerlukan autentikasi di sini
+            'auth' => ['except' => ['/auth/login', '/auth/signUp','/auth/register', '/auth', '/auth/logOut', '/']], // Tambahkan route yang tidak memerlukan autentikasi di sini
             // Filter lainnya
         ],
         'after' => [

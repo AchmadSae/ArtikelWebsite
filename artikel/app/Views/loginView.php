@@ -30,7 +30,7 @@
 
                 <button type="submit" class="btn">Login</button>
             </form>
-            <a href="/signUp" class="button mt-2"><i class="fa-solid fa-user-plus"></i> Sign-In if you don't have an
+            <a href="/auth/signUp" class="button mt-2"><i class="fa-solid fa-user-plus"></i> Sign-In if you don't have an
                 account!</a>
         </div>
     </div>
