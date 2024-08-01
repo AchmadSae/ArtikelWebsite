@@ -152,7 +152,6 @@
   margin-right: 20px;
   padding: 10px;
   border-radius: 5px;
-  cursor: pointer;
   display: flex;
   align-items: center;
 }
@@ -170,6 +169,14 @@
 }
 #sourceInformation .row .related .horizontal-list li:hover span {
   display: inline;
+}
+#sourceInformation .row .related .horizontal-list li a {
+  text-decoration: none;
+  color: #31363F;
+}
+#sourceInformation .row .related .horizontal-list li a:hover {
+  font-weight: bold;
+  border-bottom: 2px solid #76ABAE;
 }
 
 #artikel-list {

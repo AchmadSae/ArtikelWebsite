@@ -34,6 +34,7 @@ class ArtikelController extends BaseController
             'allArtikel' => $artikelModel->getAllArtikel(),
             'isLoggedIn' => $isLoggedIn
         ];
+        // dd($data);
         // var_dump($data);
         return view('ArtikelView', $data);
     }

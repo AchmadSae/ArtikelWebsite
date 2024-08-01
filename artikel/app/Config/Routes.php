@@ -12,6 +12,7 @@ $routes->group('', ['namespace' => '\App\Controllers'], function ($routes) {
 });
 $routes->group('creator', ['filter' => 'auth'], function ($routes) {
     $routes->get('create_artikel', 'RequestArtikelController::index');
+    $routes->post('request_article', 'RequestArtikelController::addArticle');
     // Add other routes that require authentication here
 });
 $routes->group('auth', ['namespace' => '\App\Controllers'], function ($routes) {

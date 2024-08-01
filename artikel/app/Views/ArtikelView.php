@@ -56,17 +56,48 @@
 
     <section id="sourceInformation">
         <div class="row">
-                <div class="col-lg-6 col-sm-12 col-md-12 d-flex justify-content-center">
-                    <div class="biography">
-                        <span><i class="fa-solid fa-book"></i> Those Information based on data from : </span>
-                        <ul class="list-group list-group-flush">
+            <div class="col-lg-6 col-sm-12 col-md-12 d-flex justify-content-center">
+                <div class="biography">
+                    <span><i class="fa-solid fa-book"></i> Those Information based on data from : </span>
+                    <ul class="list-group list-group-flush">
                         <?= $key['dictionary']; ?>
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
+            </div>
             <div class="col-lg-6 col-sm-12 col-md-12 related">
                 <ul class="horizontal-list">
-                    <?= $key['relatedSource']; ?>
+                    <li>
+                        <img class="icon" src=" /img/icons/youtube.svg" alt="" srcset="">
+                        <a href=" <?= $key['linkYoutube']; ?>">
+                            <span>
+                                Youtube
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <img class="icon" src=" /img/icons/instagram.svg" alt="" srcset="">
+                        <a href=" <?= $key['linkInstagram']; ?>">
+                            <span>
+                                Instagram
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <img class="icon" src="/img/icons/website.svg" alt="" srcset="">
+                        <a href=" <?= $key['linkWebsite']; ?>">
+                            <span>
+                                Website
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <img class="icon" src="/img/icons/podcast.svg" alt="" srcset="">
+                        <a href=" <?= $key['otherSource']; ?>">
+                            <span>
+                                Other Source
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -85,7 +116,7 @@ $base_url = base_url();
                     <?php echo $data['title']; ?>
                 </h5>
                 <p>
-                <?= substr($data['contents'], 0, 100) . '...' ?>
+                    <?= substr($data['contents'], 0, 100) . '...' ?>
                 </p>
 
                 <a href="#" class="button"><i class="fa-brands fa-readme"> </i>

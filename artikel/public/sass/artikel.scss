@@ -119,7 +119,6 @@
                     margin-right: 20px;
                     padding: 10px;
                     border-radius: 5px;
-                    cursor: pointer;
                     display: flex;
                     align-items: center;
         
@@ -140,6 +139,14 @@
         
                     &:hover span {
                         display: inline;
+                    }
+                    a {
+                      text-decoration: none;
+                      color: $color1;
+                      &:hover {
+                        font-weight: bold;
+                        border-bottom: 2px solid $color3;
+                      }
                     }
                 }
             }

@@ -1,5 +1,16 @@
-import Swal from 'sweetalert2';
 document.addEventListener("DOMContentLoaded", (event) => {
+  const titleInput = document.getElementById("inputTitle");
+  const slugInput = document.getElementById("inputSlug");
+
+  if (titleInput && slugInput) {
+    titleInput.addEventListener("input", function () {
+      const title = this.value;
+      const slug = title.toLowerCase().replace(/ /g, "-");
+      // console.log(slug);
+      slugInput.value = slug;
+    });
+  }
+
   let scrollStep = 0;
   window.addEventListener("scroll", () => {
     const scrollPosition = window.scrollY;
@@ -16,10 +27,3 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 });
-// Trigger SweetAlert2 based on flash data
-Swal.fire({
-  title: 'Error!',
-  text: 'Do you want to continue',
-  icon: 'error',
-  confirmButtonText: 'Cool'
-})
