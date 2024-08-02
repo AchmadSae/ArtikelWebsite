@@ -29,13 +29,12 @@ class ArtikelController extends BaseController
         }
         // echo "index method ";
         $data = [
-            'dataArtikel' => $artikelModel->getArtikel(null),
+            'dataArticle' => $artikelModel->getArtikel(0),
             'titleWeb' => 'Home | Artikel',
             'allArtikel' => $artikelModel->getAllArtikel(),
             'isLoggedIn' => $isLoggedIn
         ];
         // dd($data);
-        // var_dump($data);
         return view('ArtikelView', $data);
     }
 

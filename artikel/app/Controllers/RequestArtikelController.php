@@ -90,11 +90,27 @@ class RequestArtikelController extends BaseController
     private function handleFileUpload($file, $default)
     {
         if ($file && $file->isValid() && !$file->hasMoved()) {
-            $fileName = $file->getName();
-            $filePath = APPPATH . '/img/article';
-            $file->move($filePath, $fileName);
-            return 'img/article/' . $fileName;
+            $fileName = $file->getName(); // Use a random name to avoid conflicts
+            $filePath = FCPATH . 'img/article'; // Use WRITEPATH for write operations
+
+            // Ensure the directory exists
+            if (!is_dir($filePath)) {
+                mkdir($filePath, 0755, true);
+            }
+
+            // Move the file and return the path if successful
+            if ($file->move($filePath, $fileName)) {
+                return 'img/article/' . $fileName;
+            } else {
+                // Log the error for debugging
+                log_message('error', 'File could not be moved: ' . $file->getErrorString());
+                return $default;
+            }
         } else {
+            // Log the error for debugging
+            if ($file) {
+                log_message('error', 'File upload error: ' . $file->getErrorString());
+            }
             return $default;
         }
     }

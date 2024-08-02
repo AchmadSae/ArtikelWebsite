@@ -49,11 +49,7 @@ class ArtikelModel extends Model
     ];
     function getArtikel($id_artikel)
     {
-        $artikelData = null;
-        if ($id_artikel === null) {
-            $artikelData = $this->first();
-        }
-        $artikelData = $this->find($id_artikel);
+        $artikelData = $this->where('isLaunch', $id_artikel)->first();
         return $artikelData;
     }
     function getAllArtikel()
