@@ -88,7 +88,7 @@ class AuthController extends BaseController
             session()->setFlashdata('message', 'Success Login');
             session()->setFlashdata('iconMsg', 'success');
             session()->setFlashdata('isAlert', true);
-            return redirect()->to('/creator/create_artikel')->with('username', $user_id['username']);
+            return redirect()->to('/creator/create_article')->with('username', $user_id['username']);
         } else {
             session()->setFlashdata('message', 'Username and Password is incorrect!');
             session()->setFlashdata('iconMsg', 'error');

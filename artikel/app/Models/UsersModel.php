@@ -43,7 +43,8 @@ class UsersModel extends Model
         return false;
     }
 
-    function getUser($username){
+    function getUser($username)
+    {
         $user = $this->where($username)->first();
         return $user['username'];
     }

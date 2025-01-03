@@ -25,7 +25,8 @@ class Filters extends BaseConfig
         'honeypot' => Honeypot::class,
         'invalidchars' => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'auth' => AuthFilter::class
+        'auth' => AuthFilter::class,
+        'isGuest' => AuthFilter::class
     ];
 
     /**
@@ -40,7 +41,7 @@ class Filters extends BaseConfig
             // 'csrf',
             // 'invalidchars',
             // Terapkan filter 'auth' sebelum memproses request
-            'auth' => ['except' => ['/auth/login', '/auth/signUp','/auth/register', '/auth', '/auth/logOut', '/']], // Tambahkan route yang tidak memerlukan autentikasi di sini
+            'auth' => ['except' => ['/auth/login', '/auth/signUp', '/auth/register', '/auth', '/auth/logOut', '/', '/insight_and_comment']], // Tambahkan route yang tidak memerlukan autentikasi di sini
             // Filter lainnya
         ],
         'after' => [
@@ -70,12 +71,5 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [
-        'isGuest' => [
-            'before' => [
-                'artikel/*',
-                'artikel'
-            ]
-        ]
-    ];
+
 }

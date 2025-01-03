@@ -1,45 +1,50 @@
-version: '3'
+version: '3.8'
 services:
-  codeigniter_docker:
-    depends_on: 
-      - db
-    container_name: codeigniter_docker
-    build: .
+  article_codeigniter:
+    depends_on:
+      - postgres_db
+    image: kasae21/article_codeigniter:v1
+    container_name: article_codeigniter
+    build:
+      context: .
     volumes:
       - "./artikel:/var/www/html/"
     ports:
-      - 8080:80
+      - "8080:80" # Map port 8000 to Apache's port 80
     networks:
-      - portfolio_networks
+      - portfolio_network
 
-  db:
+  postgres_db:
     image: mysql:latest
-    container_name: mysql_db
+    container_name: mysql_db_article
     environment:
       MYSQL_DATABASE: portfolio_db
       MYSQL_USER: portfolio_user
       MYSQL_PASSWORD: sae_user
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_ROOT_PASSWORD: root_password
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
-      - 3306:3306
+      - "3306:3306" # Use MySQL's default port
     networks:
-      - portfolio_networks
+      - portfolio_network
+
   phpmyadmin:
     depends_on:
-      - db
+      - postgres_db
     image: phpmyadmin:latest
     container_name: phpmyadmin
     environment:
-       PMA_HOST: db
-       PMA_ARBITARY: 1
+      PMA_HOST: mysql_db_article # Match service name
+      PMA_ARBITRARY: 1
     ports:
-      - 8001:80
+      - "8040:80" # phpMyAdmin uses port 80
     networks:
-      - portfolio_networks
+      - portfolio_network
+
 networks:
-  portfolio_networks:
+  portfolio_network:
     driver: bridge
+
 volumes:
   mysql_data:

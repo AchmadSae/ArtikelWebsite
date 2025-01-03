@@ -3,18 +3,18 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\ArtikelModel;
+use App\Models\ArticleModel;
 use App\Models\UsersModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class RequestArtikelController extends BaseController
+class RequestArticleController extends BaseController
 {
     protected $usersModel;
     protected $articleModel;
     public function __construct()
     {
         $this->usersModel = new UsersModel();
-        $this->articleModel = new ArtikelModel();
+        $this->articleModel = new ArticleModel();
 
     }
     public function index()
@@ -30,7 +30,7 @@ class RequestArtikelController extends BaseController
             'isLoggedIn' => true,
             'username' => $user_id['username']
         ];
-        return view('RequestArtikelView', $data);
+        return view('RequestArticleView', $data);
     }
 
     public function addArticle()

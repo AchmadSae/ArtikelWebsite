@@ -21,34 +21,65 @@
 .footer {
   background: #31363F;
   padding: 30px 0px;
+  font-size: 0.8em;
+}
+.footer .comments {
+  color: #f9f9f9;
+}
+.footer .comments form {
+  padding: 0 2em 0 6em;
+  background-color: #31363F;
+}
+.footer .comments form .form-control {
+  background-color: #31363F; /* White background for the textarea */
+  color: #f9f9f9; /* Default text color */
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.footer .comments form .form-control:focus {
+  background-color: #dcdcdc; /* Button background color */
+  color: #31363F; /* Button text color */
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.footer .comments button {
+  color: #f9f9f9;
+}
+.footer .right-foot {
+  color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
-.footer .row {
-  width: 100%;
-  margin: 1% 0%;
-  padding: 0.6% 0%;
-  color: #f9f9f9;
-  font-size: 0.8em;
-  display: inline-block;
-}
-.footer .row a {
+.footer .right-foot a {
   text-decoration: none;
   color: gray;
   transition: 0.5s;
+  margin: 2em;
 }
-.footer .row a:hover {
+.footer .right-foot a:hover {
   color: #fff;
 }
-.footer .row ul {
+.footer .right-foot ul {
   width: 100%;
 }
-.footer .row ul li {
+.footer .right-foot ul li {
   display: inline-block;
   margin: 0px 30px;
 }
-.footer .row a i {
+.footer .right-foot a i {
   font-size: 2em;
   margin: 0% 1%;
+}
+.footer .bottom {
+  text-align: center;
+  color: #f9f9f9;
 }
 @media (max-width: 720px) {
   .footer {

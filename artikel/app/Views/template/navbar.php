@@ -8,11 +8,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item text-nav  <?php echo ($titleWeb == 'Home | Artikel') ? 'active' : ''; ?>">
+                <li class="nav-item text-nav  <?php echo ($titleWeb == 'Home | Article') ? 'active' : ''; ?>">
                     <a class="nav-link" href="#">HOME</Article></a>
                 </li>
                 <li class="nav-item text-nav  <?php echo ($titleWeb == 'Write Article') ? 'active' : ''; ?>">
-                    <a class="nav-link" href="creator/create_artikel">REQUEST ARTICLE</Article></a>
+                    <a class="nav-link" href="creator/create_article">REQUEST ARTICLE</Article></a>
                 </li>
             </ul>
             <?php if ($isLoggedIn == true): ?>

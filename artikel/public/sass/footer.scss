@@ -2,20 +2,46 @@
 .footer {
     background: $color1;
     padding: 30px 0px;
-    text-align: center;
-  
-    .row {
-      width: 100%;
-      margin: 1% 0%;
-      padding: 0.6% 0%;
+    font-size: 0.8em;
+    .comments {
       color: $color4;
-      font-size: 0.8em;
-      display: inline-block;
+      form {
+        padding: 0 2em 0 6em;
+        background-color: $color1;
+        .form-control {
+          background-color: $color1; /* White background for the textarea */
+          color: $color4; /* Default text color */
+          border: 1px solid grey;
+          border-radius: 5px;
+          padding: 10px;
+          transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .form-control:focus{
+          background-color: #dcdcdc; /* Button background color */
+          color: $color1; /* Button text color */
+          border: none;
+          padding: 8px 16px;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+      }
+      button {
+        color: $color4;
+      }
+    }
+
+    .right-foot {
+      color: $color4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
       a {
         text-decoration: none;
         color: gray;
         transition: 0.5s;
-        
+        margin: 2em;
         &:hover {
           color: #fff;
         }
@@ -34,6 +60,11 @@
         font-size: 2em;
         margin: 0% 1%;
       }
+    }
+
+    .bottom{
+      text-align: center;
+      color: $color4;
     }
   
     @media (max-width: 720px) {
